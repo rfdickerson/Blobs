@@ -13,6 +13,7 @@
 		E1E4D9071B48309200754F19 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1E4D9061B48309200754F19 /* Images.xcassets */; };
 		E1E4D90A1B48309200754F19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E4D9081B48309200754F19 /* LaunchScreen.xib */; };
 		E1E4D9161B48309200754F19 /* DrawingSimulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D9151B48309200754F19 /* DrawingSimulationTests.swift */; };
+		E1E4D9201B4830C800754F19 /* SimulationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D91F1B4830C800754F19 /* SimulationUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		E1E4D90F1B48309200754F19 /* DrawingSimulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawingSimulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E4D9141B48309200754F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E4D9151B48309200754F19 /* DrawingSimulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingSimulationTests.swift; sourceTree = "<group>"; };
+		E1E4D91F1B4830C800754F19 /* SimulationUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				E1E4D9061B48309200754F19 /* Images.xcassets */,
 				E1E4D9081B48309200754F19 /* LaunchScreen.xib */,
 				E1E4D8FD1B48309200754F19 /* Supporting Files */,
+				E1E4D91F1B4830C800754F19 /* SimulationUIView.swift */,
 			);
 			path = DrawingSimulation;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1E4D9021B48309200754F19 /* ViewController.swift in Sources */,
+				E1E4D9201B4830C800754F19 /* SimulationUIView.swift in Sources */,
 				E1E4D9001B48309200754F19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
