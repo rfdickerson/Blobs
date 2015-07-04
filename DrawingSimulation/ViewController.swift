@@ -34,6 +34,10 @@ class ViewController: UIViewController {
         println("Clicked!")
     }
     
+    @IBAction func handleClearScene(sender: AnyObject) {
+        sim?.clear()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +45,7 @@ class ViewController: UIViewController {
         
         simulationView.simulation = sim
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.015, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.005, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -51,7 +55,7 @@ class ViewController: UIViewController {
         currentTime = NSDate.timeIntervalSinceReferenceDate()
         
         var dt = currentTime - startTime
-        sim?.update(dt)
+        sim?.update(dt*10)
         simulationView.setNeedsDisplay()
         // println(dt)
         

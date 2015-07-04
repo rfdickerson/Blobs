@@ -24,18 +24,27 @@
                                     <outletCollection property="gestureRecognizers" destination="dYa-zV-QYV" appends="YES" id="stk-DN-2Pz"/>
                                 </connections>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-pD-Qrd">
-                                <rect key="frame" x="32" y="534" width="522" height="31"/>
-                                <connections>
-                                    <action selector="changeGravity:" destination="BYZ-38-t0r" eventType="valueChanged" id="9Lu-Dp-RPh"/>
-                                </connections>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gravity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-u5-RcD">
-                                <rect key="frame" x="34" y="505" width="55" height="21"/>
+                                <rect key="frame" x="34" y="478" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sga-I6-CZf">
+                                <rect key="frame" x="34" y="550" width="103" height="30"/>
+                                <state key="normal" title="Clear Scene">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleClearScene:" destination="BYZ-38-t0r" eventType="touchUpInside" id="apJ-MV-QbS"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9.8000000000000007" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-pD-Qrd">
+                                <rect key="frame" x="32" y="507" width="522" height="31"/>
+                                <connections>
+                                    <action selector="changeGravity:" destination="BYZ-38-t0r" eventType="valueChanged" id="9Lu-Dp-RPh"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>

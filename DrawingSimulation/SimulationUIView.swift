@@ -26,10 +26,10 @@ class SimulationUIView: UIView {
         
         CGContextSetStrokeColorWithColor(context, color)
         
-        CGContextMoveToPoint(context, 20, 30)
-        CGContextAddLineToPoint(context, 300, 400)
+        //CGContextMoveToPoint(context, 20, 30)
+        //CGContextAddLineToPoint(context, 300, 400)
         
-        CGContextStrokePath(context)
+        // CGContextStrokePath(context)
         
         if let sim = simulation
         {
@@ -37,6 +37,15 @@ class SimulationUIView: UIView {
             {
                 let rectangle = CGRectMake(CGFloat(ball.x), CGFloat(ball.y), 20.0, 20.0)
                 CGContextAddEllipseInRect(context, rectangle)
+                CGContextStrokePath(context)
+                CGContextFillPath(context)
+            }
+            
+            for spring in sim.springs
+            {
+                CGContextMoveToPoint(context, CGFloat(spring.ball1.x), CGFloat(spring.ball1.y))
+                CGContextAddLineToPoint(context, CGFloat(spring.ball2.x), CGFloat(spring.ball2.y))
+                
                 CGContextStrokePath(context)
             }
         }
