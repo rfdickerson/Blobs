@@ -17,18 +17,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHe-bn-WMI" customClass="SimulationUIView" customModule="DrawingSimulation" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="470"/>
+                                <color key="backgroundColor" red="0.74087635612743008" green="0.90425612713495407" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dYa-zV-QYV" appends="YES" id="stk-DN-2Pz"/>
+                                </connections>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-pD-Qrd">
+                                <rect key="frame" x="32" y="534" width="522" height="31"/>
+                                <connections>
+                                    <action selector="changeGravity:" destination="BYZ-38-t0r" eventType="valueChanged" id="9Lu-Dp-RPh"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gravity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-u5-RcD">
+                                <rect key="frame" x="34" y="505" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="fHe-bn-WMI" secondAttribute="trailing" id="E6Q-f3-pBb"/>
+                            <constraint firstItem="Niv-pD-Qrd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="34" id="MXi-W5-fJj"/>
                             <constraint firstItem="fHe-bn-WMI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="d6h-2w-0aD"/>
+                            <constraint firstAttribute="trailing" secondItem="Niv-pD-Qrd" secondAttribute="trailing" constant="48" id="jv3-cD-dUi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="simulationView" destination="fHe-bn-WMI" id="35v-HZ-dvr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dYa-zV-QYV">
+                    <connections>
+                        <action selector="handleClick:" destination="BYZ-38-t0r" id="EqS-14-sI1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>

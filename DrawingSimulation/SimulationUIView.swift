@@ -10,6 +10,7 @@ import UIKit
 
 class SimulationUIView: UIView {
 
+    var simulation : Simulation?
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -29,6 +30,16 @@ class SimulationUIView: UIView {
         CGContextAddLineToPoint(context, 300, 400)
         
         CGContextStrokePath(context)
+        
+        if let sim = simulation
+        {
+            for ball in sim.balls
+            {
+                let rectangle = CGRectMake(CGFloat(ball.x), CGFloat(ball.y), 20.0, 20.0)
+                CGContextAddEllipseInRect(context, rectangle)
+                CGContextStrokePath(context)
+            }
+        }
         
         
     }
