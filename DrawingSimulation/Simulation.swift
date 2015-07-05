@@ -69,9 +69,11 @@ public class Simulation {
     }
     
     var gravity : Double = 9.8
+    var distanceThreshold : Double = 50
     
     var damping: Double = 1.0
-    var defaultSpringiness: Double = 100
+    public var defaultSpringiness: Double = 100
+    public var defaultMass : Double = 3.0
     
     var balls : [Ball]
     var springs : [Spring]
@@ -81,7 +83,8 @@ public class Simulation {
         balls = [Ball]()
         springs = [Spring]()
         
-        addBall(200, y: 200, mass: 1e13, isAnchor: true)
+        clear()
+        //addBall(200, y: 200, isAnchor: true)
     }
     
     public func mydist(x1: Double, y1: Double, x2: Double, y2: Double) -> Double
@@ -93,13 +96,15 @@ public class Simulation {
         return sqrt(dx * dx + dy * dy)
     }
     
-    public func addBall( x: Double, y: Double, mass: Double, isAnchor: Bool = false)
+    public func addBall( x: Double, y: Double, isAnchor: Bool = false)
     {
     
+        let mass = isAnchor ? 1e13 : defaultMass
+        
         let newball = Ball(x: x, y: y, mass: mass, isAnchor: isAnchor)
         
         var nearby = balls.filter() {
-            return self.mydist( $0.x, y1: $0.y, x2: newball.x, y2: newball.y) < 100.0
+            return self.mydist( $0.x, y1: $0.y, x2: newball.x, y2: newball.y) < self.distanceThreshold
         }
         
         for ball in nearby
@@ -120,8 +125,8 @@ public class Simulation {
         springs.removeAll(keepCapacity: true)
         balls.removeAll(keepCapacity: true)
         
-        addBall(50, y: 200, mass: 1e13, isAnchor: true)
-        addBall(300, y: 200, mass: 1e13, isAnchor: true)
+        addBall(50, y: 100, isAnchor: true)
+        addBall(300, y: 100, isAnchor: true)
     }
     
     func updatePosition(ball : Ball, dt: Double)

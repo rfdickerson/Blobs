@@ -30,13 +30,22 @@ class ViewController: UIViewController {
         sim?.gravity = Double(sender.value)
     }
     
+    @IBAction func handleChangeMass(sender: UISlider) {
+        sim?.defaultMass = Double(sender.value)
+    }
+    
+    @IBAction func handleChangleElasticity(sender: UISlider) {
+        
+        sim?.defaultSpringiness = Double(sender.value)
+    }
+    
     @IBAction func handleClick(sender: UITapGestureRecognizer) {
         
         if let view = sender.view
         {
             let coords = sender.locationInView( view )
             
-            sim?.addBall(Double(coords.x), y: Double(coords.y), mass: 2.0)
+            sim?.addBall(Double(coords.x), y: Double(coords.y))
         }
         
         simulationView.setNeedsDisplay()

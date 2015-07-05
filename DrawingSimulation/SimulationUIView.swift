@@ -12,7 +12,19 @@ class SimulationUIView: UIView {
 
     let ballsize : Double = 20
     
+    let ballScaleSize = 5.0
+    
     var simulation : Simulation?
+    
+    func getBallCoords (x : Double, y: Double, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
+    {
+        let size = ballScaleSize * mass;
+        
+        let l : Double = x - size/2.0
+        let t : Double = y - size/2.0
+        
+        return (CGFloat(l), CGFloat(t), CGFloat(size))
+    }
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -50,8 +62,8 @@ class SimulationUIView: UIView {
             
             for ball in sim.balls
             {
-                let x : Double = ball.x - ballsize/2
-                let y : Double = ball.y - ballsize/2
+                let x : Double = ball.x - ballsize/2.0
+                let y : Double = ball.y - ballsize/2.0
                 
                 if (ball.isAnchor)
                 {
@@ -62,11 +74,22 @@ class SimulationUIView: UIView {
                     CGContextSetFillColorWithColor(context, color)
                 }
                 
+                let (l, t, size) = getBallCoords(ball.x, y: ball.y, mass: ball.mass)
                 
-                let rectangle = CGRectMake(CGFloat(x), CGFloat(y), 20.0, 20.0)
-                CGContextAddEllipseInRect(context, rectangle)
-                // CGContextStrokePath(context)
-                CGContextFillPath(context)
+                if ball.isAnchor {
+                    let rectangle = CGRectMake(CGFloat(x), CGFloat(y), 20.0, 20.0)
+                    
+                    CGContextAddEllipseInRect(context, rectangle)
+                
+                    CGContextFillPath(context)
+                }
+                else {
+                    let rectangle = CGRectMake(l, t, size, size)
+                    CGContextAddEllipseInRect(context, rectangle)
+                    
+                    CGContextFillPath(context)
+                }
+                
             }
             
                     }
