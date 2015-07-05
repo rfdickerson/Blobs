@@ -81,7 +81,7 @@ public class Simulation {
         balls = [Ball]()
         springs = [Spring]()
         
-        addBall(200, y: 200, mass: 100000, isAnchor: true)
+        addBall(200, y: 200, mass: 1e13, isAnchor: true)
     }
     
     public func mydist(x1: Double, y1: Double, x2: Double, y2: Double) -> Double
@@ -119,6 +119,9 @@ public class Simulation {
     {
         springs.removeAll(keepCapacity: true)
         balls.removeAll(keepCapacity: true)
+        
+        addBall(50, y: 200, mass: 1e13, isAnchor: true)
+        addBall(200, y: 200, mass: 1e13, isAnchor: true)
     }
     
     func updatePosition(ball : Ball, dt: Double)
@@ -170,8 +173,8 @@ public class Simulation {
         spring.ball1.fx += fx1
         spring.ball1.fy += fy1
         
-        spring.ball2.fx -= fx2
-        spring.ball2.fy -= fy2
+        spring.ball2.fx += fx2
+        spring.ball2.fy += fy2
         
         spring.ball1.fx += fx
         spring.ball1.fy += fy
