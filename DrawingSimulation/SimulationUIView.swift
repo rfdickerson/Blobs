@@ -10,6 +10,8 @@ import UIKit
 
 class SimulationUIView: UIView {
 
+    let ballsize : Double = 20
+    
     var simulation : Simulation?
     
     // Only override drawRect: if you perform custom drawing.
@@ -22,9 +24,12 @@ class SimulationUIView: UIView {
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let components: [CGFloat] = [0.0, 0.0, 1.0, 1.0]
+        let components2: [CGFloat] = [1.0, 0.0, 1.0, 1.0]
         let color = CGColorCreate(colorSpace, components)
+        let color2 = CGColorCreate(colorSpace, components2)
         
         CGContextSetStrokeColorWithColor(context, color)
+        CGContextSetFillColorWithColor(context, color)
         
         //CGContextMoveToPoint(context, 20, 30)
         //CGContextAddLineToPoint(context, 300, 400)
@@ -33,13 +38,6 @@ class SimulationUIView: UIView {
         
         if let sim = simulation
         {
-            for ball in sim.balls
-            {
-                let rectangle = CGRectMake(CGFloat(ball.x), CGFloat(ball.y), 20.0, 20.0)
-                CGContextAddEllipseInRect(context, rectangle)
-                CGContextStrokePath(context)
-                CGContextFillPath(context)
-            }
             
             for spring in sim.springs
             {
@@ -48,7 +46,30 @@ class SimulationUIView: UIView {
                 
                 CGContextStrokePath(context)
             }
-        }
+
+            
+            for ball in sim.balls
+            {
+                let x : Double = ball.x - ballsize/2
+                let y : Double = ball.y - ballsize/2
+                
+                if (ball.isAnchor)
+                {
+                    CGContextSetStrokeColorWithColor(context, color2)
+                    CGContextSetFillColorWithColor(context, color2)
+                } else {
+                    CGContextSetStrokeColorWithColor(context, color)
+                    CGContextSetFillColorWithColor(context, color)
+                }
+                
+                
+                let rectangle = CGRectMake(CGFloat(x), CGFloat(y), 20.0, 20.0)
+                CGContextAddEllipseInRect(context, rectangle)
+                // CGContextStrokePath(context)
+                CGContextFillPath(context)
+            }
+            
+                    }
         
         
     }

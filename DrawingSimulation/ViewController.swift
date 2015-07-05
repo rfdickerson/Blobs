@@ -15,7 +15,17 @@ class ViewController: UIViewController {
     var sim : Simulation?
     var startTime = NSDate.timeIntervalSinceReferenceDate()
     var currentTime: NSTimeInterval = 0
+    var timer : NSTimer?
 
+    
+    @IBAction func handleSimRun(switchState: UISwitch) {
+        if switchState.on {
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.005, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        } else {
+            timer?.invalidate()
+        }
+    }
+    
     @IBAction func changeGravity(sender: UISlider) {
         sim?.gravity = Double(sender.value)
     }
@@ -36,6 +46,8 @@ class ViewController: UIViewController {
     
     @IBAction func handleClearScene(sender: AnyObject) {
         sim?.clear()
+        
+        simulationView.setNeedsDisplay()
     }
     
     override func viewDidLoad() {
@@ -45,18 +57,22 @@ class ViewController: UIViewController {
         
         simulationView.simulation = sim
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.005, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.005, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
     
     func update()
     {
         currentTime = NSDate.timeIntervalSinceReferenceDate()
         
         var dt = currentTime - startTime
-        sim?.update(dt*10)
-        simulationView.setNeedsDisplay()
+        
+        if dt < 0.1 {
+            sim?.update(dt*10)
+            simulationView.setNeedsDisplay()
+        }
         // println(dt)
         
         startTime = currentTime

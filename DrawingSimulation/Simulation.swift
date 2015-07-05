@@ -121,7 +121,7 @@ public class Simulation {
         balls.removeAll(keepCapacity: true)
         
         addBall(50, y: 200, mass: 1e13, isAnchor: true)
-        addBall(200, y: 200, mass: 1e13, isAnchor: true)
+        addBall(300, y: 200, mass: 1e13, isAnchor: true)
     }
     
     func updatePosition(ball : Ball, dt: Double)
