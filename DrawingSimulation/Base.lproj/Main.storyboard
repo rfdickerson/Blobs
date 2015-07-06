@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHe-bn-WMI" customClass="SimulationUIView" customModule="DrawingSimulation" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="407"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="358"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -69,8 +69,8 @@
                                     <action selector="handleChangleElasticity:" destination="BYZ-38-t0r" eventType="valueChanged" id="hvq-VH-Zs8"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Elasticity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNA-Fu-UoE">
-                                <rect key="frame" x="20" y="435" width="69" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stiffness" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNA-Fu-UoE">
+                                <rect key="frame" x="20" y="435" width="67" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -81,6 +81,30 @@
                                     <action selector="handleChangeMass:" destination="BYZ-38-t0r" eventType="valueChanged" id="2E9-UE-xN3"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myt-2t-78u">
+                                <rect key="frame" x="30" y="401" width="57" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="xyT-4o-bk1">
+                                <rect key="frame" x="113" y="397" width="442" height="31"/>
+                                <connections>
+                                    <action selector="handleChangleElasticity:" destination="BYZ-38-t0r" eventType="valueChanged" id="hJ0-ML-gMZ"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Density" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cL-dA-0qE">
+                                <rect key="frame" x="30" y="362" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="me1-gY-SdY">
+                                <rect key="frame" x="113" y="359" width="442" height="31"/>
+                                <connections>
+                                    <action selector="handleChangleElasticity:" destination="BYZ-38-t0r" eventType="valueChanged" id="f5Q-oM-CUX"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -88,13 +112,18 @@
                             <constraint firstItem="K0h-gz-oYz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="114" id="5kB-xQ-JX4"/>
                             <constraint firstAttribute="trailing" secondItem="fHe-bn-WMI" secondAttribute="trailing" id="E6Q-f3-pBb"/>
                             <constraint firstAttribute="trailing" secondItem="7fD-7Y-is7" secondAttribute="trailing" constant="47" id="EZI-iA-cRa"/>
+                            <constraint firstItem="me1-gY-SdY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="115" id="IIb-B6-uxG"/>
                             <constraint firstAttribute="trailing" secondItem="K0h-gz-oYz" secondAttribute="trailing" constant="48" id="XTX-yL-hAL"/>
                             <constraint firstItem="7fD-7Y-is7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="115" id="cSX-5F-I1d"/>
                             <constraint firstItem="fHe-bn-WMI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="d6h-2w-0aD"/>
+                            <constraint firstAttribute="trailing" secondItem="me1-gY-SdY" secondAttribute="trailing" constant="47" id="dxE-Yr-xEg"/>
                             <constraint firstAttribute="trailing" secondItem="Niv-pD-Qrd" secondAttribute="trailing" constant="48" id="jv3-cD-dUi"/>
+                            <constraint firstAttribute="trailing" secondItem="xyT-4o-bk1" secondAttribute="trailing" constant="47" id="ncJ-Kt-Rgb"/>
                             <constraint firstItem="Niv-pD-Qrd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="114" id="pfo-Ef-l3Y"/>
+                            <constraint firstItem="xyT-4o-bk1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="115" id="vsM-53-3hZ"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="simulationView" destination="fHe-bn-WMI" id="35v-HZ-dvr"/>
                     </connections>
@@ -106,6 +135,25 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xDI-jW-Edy">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Llw-Y7-vKt" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0CK-pO-7d0"/>
+                        <viewControllerLayoutGuide type="bottom" id="jax-IE-aWz"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W83-I5-91I">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hp3-1u-W2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="550" y="1104"/>
         </scene>
     </scenes>
 </document>

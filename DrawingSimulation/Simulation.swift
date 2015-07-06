@@ -41,6 +41,7 @@ public class Simulation {
             self.yp = 0.0
             
             self.mass = mass
+            self.volume = 100.0
             
             self.vx = 0.0
             self.vy = 0.0
@@ -57,6 +58,7 @@ public class Simulation {
         var yp: Double
         
         var mass : Double
+        var volume : Double
         
         var vx : Double
         var vy : Double
@@ -67,6 +69,9 @@ public class Simulation {
         var isAnchor: Bool
         
     }
+    
+    var gravityX: Double = 0.0
+    var gravityY: Double = 1.0
     
     var gravity : Double = 9.8
     var distanceThreshold : Double = 50
@@ -129,8 +134,8 @@ public class Simulation {
         addBall(300, y: 100, isAnchor: true)
     }
     
-    func updatePosition(ball : Ball, dt: Double)
-    {
+    func updatePosition(ball : Ball, dt: Double) {
+        
         let posy = ball.y + ball.vy * dt
         let posx = ball.x + ball.vx * dt
         
@@ -139,6 +144,7 @@ public class Simulation {
         
         ball.x = posx
         ball.y = posy
+        
     }
     
     func updateVelocities(ball: Ball, dt: Double)
@@ -156,7 +162,12 @@ public class Simulation {
     func forceGravity(ball: Ball)
     {
         if (ball.isAnchor == false) {
-            ball.fy += ball.mass * gravity
+            
+            
+            ball.fy += gravityY * ball.mass * gravity
+            ball.fx += gravityX * ball.mass * gravity
+            
+            // println(gravityX)
         }
     }
     

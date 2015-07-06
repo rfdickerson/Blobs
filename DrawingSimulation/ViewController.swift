@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 class ViewController: UIViewController {
 
@@ -16,7 +17,11 @@ class ViewController: UIViewController {
     var startTime = NSDate.timeIntervalSinceReferenceDate()
     var currentTime: NSTimeInterval = 0
     var timer : NSTimer?
+    var motionManager : CMMotionManager?
 
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
     
     @IBAction func handleSimRun(switchState: UISwitch) {
         if switchState.on {
@@ -62,6 +67,29 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // acceleration stuff
+        motionManager = CMMotionManager()
+        if motionManager!.deviceMotionAvailable {
+            println("Motion device Found!!")
+            motionManager?.deviceMotionUpdateInterval = 0.005
+            
+            motionManager?.startDeviceMotionUpdates()
+            
+            /*
+            manager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) {
+                [weak self] (data: CMDeviceMotion!, error: NSError!) in
+                
+                println("Got acceleration update")
+                self!.sim?.gravityX = data.gravity.x
+                self!.sim?.gravityY = data.gravity.y
+            
+            }
+            */
+        } else {
+           println("Motion device not available")
+        }
+        
         sim = Simulation()
         
         simulationView.simulation = sim
@@ -74,6 +102,15 @@ class ViewController: UIViewController {
     
     func update()
     {
+        
+        if let deviceMotion = motionManager?.deviceMotion {
+            
+            sim?.gravityX = Double(deviceMotion.gravity.x)
+            sim?.gravityY = Double(-deviceMotion.gravity.y)
+            
+        }
+        
+        
         currentTime = NSDate.timeIntervalSinceReferenceDate()
         
         var dt = currentTime - startTime
