@@ -42,6 +42,7 @@ public class Simulation {
             
             self.mass = mass
             self.volume = 100.0
+            self.charge = 50
             
             self.isAnchor = isAnchor
         }
@@ -51,6 +52,7 @@ public class Simulation {
         var oldPosition : MILVector
         var mass : Double
         var volume : Double
+        var charge : Double
         
         var velocity : MILVector
         var force : MILVector
@@ -111,8 +113,9 @@ public class Simulation {
         springs.removeAll(keepCapacity: true)
         balls.removeAll(keepCapacity: true)
         
-        addBall(50, y: 100, isAnchor: true)
-        addBall(300, y: 100, isAnchor: true)
+        addBall(200, y: 200, isAnchor: true)
+        //addBall(50, y: 100, isAnchor: true)
+        //addBall(300, y: 100, isAnchor: true)
     }
     
     func updatePosition(ball : Ball, dt: Double) {
@@ -139,6 +142,25 @@ public class Simulation {
             
             ball.force = ball.force + gravity * ball.mass * gravityAcceleration
             
+        }
+    }
+    
+    func forceCharge(ball: Ball)
+    {
+        for b in balls
+        {
+            let r = (ball.position - b.position).magnitude()
+            let v = (ball.position - b.position)
+            
+            if r < 0.1 {
+                continue
+            }
+            
+            let f = ball.charge * ball.charge / (r*r)
+            // println (f)
+            let nv = v * f
+            
+            ball.force = ball.force + nv
         }
     }
     
@@ -199,6 +221,7 @@ public class Simulation {
                 forceCollision(ball, dt: dt)
             }
             
+            forceCharge(ball)
             forceGravity(ball)
         }
         

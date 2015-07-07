@@ -22,6 +22,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="dYa-zV-QYV" appends="YES" id="stk-DN-2Pz"/>
+                                    <outletCollection property="gestureRecognizers" destination="77G-MO-9zo" appends="YES" id="80N-F7-0fn"/>
                                 </connections>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9.8000000000000007" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-pD-Qrd">
@@ -81,30 +82,6 @@
                                     <action selector="handleChangeMass:" destination="BYZ-38-t0r" eventType="valueChanged" id="2E9-UE-xN3"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myt-2t-78u">
-                                <rect key="frame" x="30" y="401" width="57" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="xyT-4o-bk1">
-                                <rect key="frame" x="113" y="397" width="442" height="31"/>
-                                <connections>
-                                    <action selector="handleChangleElasticity:" destination="BYZ-38-t0r" eventType="valueChanged" id="hJ0-ML-gMZ"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Density" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cL-dA-0qE">
-                                <rect key="frame" x="30" y="362" width="58" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="me1-gY-SdY">
-                                <rect key="frame" x="113" y="359" width="442" height="31"/>
-                                <connections>
-                                    <action selector="handleChangleElasticity:" destination="BYZ-38-t0r" eventType="valueChanged" id="f5Q-oM-CUX"/>
-                                </connections>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -112,15 +89,11 @@
                             <constraint firstItem="K0h-gz-oYz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="114" id="5kB-xQ-JX4"/>
                             <constraint firstAttribute="trailing" secondItem="fHe-bn-WMI" secondAttribute="trailing" id="E6Q-f3-pBb"/>
                             <constraint firstAttribute="trailing" secondItem="7fD-7Y-is7" secondAttribute="trailing" constant="47" id="EZI-iA-cRa"/>
-                            <constraint firstItem="me1-gY-SdY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="115" id="IIb-B6-uxG"/>
                             <constraint firstAttribute="trailing" secondItem="K0h-gz-oYz" secondAttribute="trailing" constant="48" id="XTX-yL-hAL"/>
                             <constraint firstItem="7fD-7Y-is7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="115" id="cSX-5F-I1d"/>
                             <constraint firstItem="fHe-bn-WMI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="d6h-2w-0aD"/>
-                            <constraint firstAttribute="trailing" secondItem="me1-gY-SdY" secondAttribute="trailing" constant="47" id="dxE-Yr-xEg"/>
                             <constraint firstAttribute="trailing" secondItem="Niv-pD-Qrd" secondAttribute="trailing" constant="48" id="jv3-cD-dUi"/>
-                            <constraint firstAttribute="trailing" secondItem="xyT-4o-bk1" secondAttribute="trailing" constant="47" id="ncJ-Kt-Rgb"/>
                             <constraint firstItem="Niv-pD-Qrd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="114" id="pfo-Ef-l3Y"/>
-                            <constraint firstItem="xyT-4o-bk1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="115" id="vsM-53-3hZ"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -134,6 +107,11 @@
                         <action selector="handleClick:" destination="BYZ-38-t0r" id="EqS-14-sI1"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="77G-MO-9zo">
+                    <connections>
+                        <action selector="handlePan:" destination="BYZ-38-t0r" id="iP3-ju-sEA"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
         </scene>
         <!--View Controller-->

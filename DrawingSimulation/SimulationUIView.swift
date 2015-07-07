@@ -10,18 +10,33 @@ import UIKit
 
 class SimulationUIView: UIView {
 
-    let ballsize : Double = 20
+    let ballsize : Double = 10
     
     let ballScaleSize = 5.0
     
+    var profileImg = UIImage(named: "ProfilePic.png")
+    var bandImg = UIImage(named: "band")
+    
     var simulation : Simulation?
     
-    func getBallCoords (x : Double, y: Double, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
+    var viewportOffset : MILVector = MILVector()
+    
+    func toViewspace(v: MILVector) -> MILVector
     {
-        let size = ballScaleSize * mass;
+        return ( viewportOffset + v)
+    }
+    
+    func toWorldspace(v: MILVector) -> MILVector
+    {
+        return (v - viewportOffset)
+    }
+    
+    func getBallCoords (position: MILVector, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
+    {
+        let size = 50.0;
         
-        let l : Double = x - size/2.0
-        let t : Double = y - size/2.0
+        let l : Double = position.x - size/2.0
+        let t : Double = position.y - size/2.0
         
         return (CGFloat(l), CGFloat(t), CGFloat(size))
     }
@@ -35,8 +50,8 @@ class SimulationUIView: UIView {
         CGContextSetLineWidth(context, 2.0)
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let components: [CGFloat] = [0.0, 0.0, 1.0, 1.0]
-        let components2: [CGFloat] = [1.0, 0.0, 1.0, 1.0]
+        let components: [CGFloat] = [0.0, 0.0, 0.0, 1.0]
+        let components2: [CGFloat] = [0.0, 0.0, 0.0, 1.0]
         let color = CGColorCreate(colorSpace, components)
         let color2 = CGColorCreate(colorSpace, components2)
         
@@ -53,8 +68,11 @@ class SimulationUIView: UIView {
             
             for spring in sim.springs
             {
-                CGContextMoveToPoint(context, CGFloat(spring.ball1.position.x), CGFloat(spring.ball1.position.y))
-                CGContextAddLineToPoint(context, CGFloat(spring.ball2.position.x), CGFloat(spring.ball2.position.y))
+                let v1 = toWorldspace(spring.ball1.position)
+                let v2 = toWorldspace(spring.ball2.position)
+                
+                CGContextMoveToPoint(context, CGFloat(v1.x), CGFloat(v1.y))
+                CGContextAddLineToPoint(context, CGFloat(v2.x), CGFloat(v2.y))
                 
                 CGContextStrokePath(context)
             }
@@ -65,6 +83,9 @@ class SimulationUIView: UIView {
                 let x : Double = ball.position.x - ballsize/2.0
                 let y : Double = ball.position.y - ballsize/2.0
                 
+                let v = MILVector(x: x, y: y)
+                let nv = toWorldspace(v)
+                
                 if (ball.isAnchor)
                 {
                     CGContextSetStrokeColorWithColor(context, color2)
@@ -74,20 +95,32 @@ class SimulationUIView: UIView {
                     CGContextSetFillColorWithColor(context, color)
                 }
                 
-                let (l, t, size) = getBallCoords(ball.position.x, y: ball.position.y, mass: ball.mass)
+                //let (l, t, size) = getBallCoords(ball, mass: ball.mass)
+                let rectangle = CGRectMake(CGFloat(nv.x)-32, CGFloat(nv.y)-32, 64.0, 64.0)
+
                 
                 if ball.isAnchor {
-                    let rectangle = CGRectMake(CGFloat(x), CGFloat(y), 20.0, 20.0)
+                    let rectangle = CGRectMake(CGFloat(nv.x)-32, CGFloat(nv.y)-32, 64.0, 64.0)
                     
                     CGContextAddEllipseInRect(context, rectangle)
                 
-                    CGContextFillPath(context)
+                    //CGContextFillPath(context)
+                    // CGContextDrawImage(context, rectangle, profileImg?.CGImage)
+                    
+                    //CGContextTranslateCTM(context, 0, profileImg!.size.height)
+                    //CGContextScaleCTM(context, 1.0, -1.0)
+                    //CGContextDrawImage(context, rectangle, profileImg?.CGImage)
+                    profileImg?.drawInRect( rectangle)
+                    
+                    CGContextStrokeEllipseInRect(context, rectangle)
                 }
                 else {
-                    let rectangle = CGRectMake(l, t, size, size)
+                    //let rectangle = CGRectMake(l, t, size, size)
                     CGContextAddEllipseInRect(context, rectangle)
                     
                     CGContextFillPath(context)
+                    
+                    //bandImg?.drawInRect(rectangle)
                 }
                 
             }

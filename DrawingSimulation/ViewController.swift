@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var currentTime: NSTimeInterval = 0
     var timer : NSTimer?
     var motionManager : CMMotionManager?
+    var panBegin : MILVector?
 
     override func shouldAutorotate() -> Bool {
         return false
@@ -39,6 +40,31 @@ class ViewController: UIViewController {
         sim?.defaultMass = Double(sender.value)
     }
     
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        if let view = sender.view as? SimulationUIView
+        {
+            let coords = sender.translationInView(view)
+            let c = MILVector(x: Double(coords.x), y: Double(coords.y))
+            
+            
+            if sender.state == UIGestureRecognizerState.Began
+            {
+               panBegin = c
+            }
+            
+            let offset = c - panBegin!
+            
+            println(coords)
+            
+            // let c = MILVector(x: Double(coords.x), y: Double(coords.y))
+            
+            view.viewportOffset = view.viewportOffset + offset
+            
+            panBegin = MILVector(x: c.x, y: c.y)
+
+        }
+    }
+    
     @IBAction func handleChangleElasticity(sender: UISlider) {
         
         sim?.defaultSpringiness = Double(sender.value)
@@ -46,11 +72,14 @@ class ViewController: UIViewController {
     
     @IBAction func handleClick(sender: UITapGestureRecognizer) {
         
-        if let view = sender.view
+        if let view = sender.view as? SimulationUIView
         {
             let coords = sender.locationInView( view )
+            let c = MILVector(x:Double(coords.x), y: Double(coords.y))
             
-            sim?.addBall(Double(coords.x), y: Double(coords.y))
+            let v = view.toViewspace(c)
+            
+            sim?.addBall(Double(v.x), y: Double(v.y))
         }
         
         simulationView.setNeedsDisplay()
