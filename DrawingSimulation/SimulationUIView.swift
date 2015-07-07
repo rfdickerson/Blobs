@@ -53,8 +53,8 @@ class SimulationUIView: UIView {
             
             for spring in sim.springs
             {
-                CGContextMoveToPoint(context, CGFloat(spring.ball1.x), CGFloat(spring.ball1.y))
-                CGContextAddLineToPoint(context, CGFloat(spring.ball2.x), CGFloat(spring.ball2.y))
+                CGContextMoveToPoint(context, CGFloat(spring.ball1.position.x), CGFloat(spring.ball1.position.y))
+                CGContextAddLineToPoint(context, CGFloat(spring.ball2.position.x), CGFloat(spring.ball2.position.y))
                 
                 CGContextStrokePath(context)
             }
@@ -62,8 +62,8 @@ class SimulationUIView: UIView {
             
             for ball in sim.balls
             {
-                let x : Double = ball.x - ballsize/2.0
-                let y : Double = ball.y - ballsize/2.0
+                let x : Double = ball.position.x - ballsize/2.0
+                let y : Double = ball.position.y - ballsize/2.0
                 
                 if (ball.isAnchor)
                 {
@@ -74,7 +74,7 @@ class SimulationUIView: UIView {
                     CGContextSetFillColorWithColor(context, color)
                 }
                 
-                let (l, t, size) = getBallCoords(ball.x, y: ball.y, mass: ball.mass)
+                let (l, t, size) = getBallCoords(ball.position.x, y: ball.position.y, mass: ball.mass)
                 
                 if ball.isAnchor {
                     let rectangle = CGRectMake(CGFloat(x), CGFloat(y), 20.0, 20.0)

@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func changeGravity(sender: UISlider) {
-        sim?.gravity = Double(sender.value)
+        sim?.gravityAcceleration = Double(sender.value)
     }
     
     @IBAction func handleChangeMass(sender: UISlider) {
@@ -105,8 +105,8 @@ class ViewController: UIViewController {
         
         if let deviceMotion = motionManager?.deviceMotion {
             
-            sim?.gravityX = Double(deviceMotion.gravity.x)
-            sim?.gravityY = Double(-deviceMotion.gravity.y)
+            sim?.gravity.x = Double(deviceMotion.gravity.x)
+            sim?.gravity.y = Double(-deviceMotion.gravity.y)
             
         }
         
