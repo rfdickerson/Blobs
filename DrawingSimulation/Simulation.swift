@@ -114,8 +114,15 @@ public class Simulation {
         balls.removeAll(keepCapacity: true)
         
         addBall(200, y: 200, isAnchor: true)
-        //addBall(50, y: 100, isAnchor: true)
-        //addBall(300, y: 100, isAnchor: true)
+        
+        for i in 0...12
+        {
+            let x = 230.0 + Double(i)*30.0
+            addBall(x, y: 230, isAnchor: false)
+        }
+        
+        addBall(50, y: 100, isAnchor: true)
+        addBall(300, y: 100, isAnchor: true)
     }
     
     func updatePosition(ball : Ball, dt: Double) {

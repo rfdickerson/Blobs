@@ -54,11 +54,11 @@ class ViewController: UIViewController {
             
             let offset = c - panBegin!
             
-            println(coords)
+            // println(coords)
             
             // let c = MILVector(x: Double(coords.x), y: Double(coords.y))
             
-            view.viewportOffset = view.viewportOffset + offset
+            view.viewportOffset = view.viewportOffset - offset
             
             panBegin = MILVector(x: c.x, y: c.y)
 
