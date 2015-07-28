@@ -1,2 +1,4 @@
 language: swift
+xcode_project: DrawingSimulation.xcodeproj
+xcode_scheme: DrawingSimulationTests
 osx_image: xcode6.4
