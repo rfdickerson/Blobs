@@ -1,4 +1,4 @@
 language: objective-c
 xcode_project: DrawingSimulation.xcodeproj
-xcode_scheme: DrawingSimulationTests
+xcode_scheme: DrawingSimulation
 osx_image: xcode6.4
