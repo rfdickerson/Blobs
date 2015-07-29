@@ -4,5 +4,4 @@ language: objective-c
 
 osx_image: xcode6.4
 
-script:
-- xcodebuild clean build -scheme DrawingSimulation
+script: xcodebuild clean build -scheme DrawingSimulation
