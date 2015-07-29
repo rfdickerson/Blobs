@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/rfdickerson/physics-blobs.png?label=ready&title=Ready)](https://waffle.io/rfdickerson/physics-blobs)
 Physics Blobs
 
 [![Build Status](https://travis-ci.org/rfdickerson/physics-blobs.svg?branch=master)](https://travis-ci.org/rfdickerson/physics-blobs)
