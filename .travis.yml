@@ -5,4 +5,4 @@ language: objective-c
 osx_image: xcode6.4
 
 script: 
-  - xcodebuild -project DrawingSimulation.xcodeproj -scheme DrawingSimulation -sdk iphonesimulator
+  - xctool -project DrawingSimulation.xcodeproj -scheme DrawingSimulation -sdk iphonesimulator
