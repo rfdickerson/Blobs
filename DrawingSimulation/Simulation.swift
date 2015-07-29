@@ -34,44 +34,41 @@ public class Simulation {
         
         init(x: Double, y: Double, mass: Double, isAnchor: Bool = false)
         {
-            self.x = x
-            self.y = y
+            self.position = MILVector(x: x, y: y)
+            self.oldPosition = MILVector(x: x, y: y)
             
-            self.xp = 0.0
-            self.yp = 0.0
+            self.velocity = MILVector()
+            self.force = MILVector()
             
             self.mass = mass
-            
-            self.vx = 0.0
-            self.vy = 0.0
-            self.fx = 0.0
-            self.fy = 0.0
+            self.volume = 100.0
+            self.charge = 50
             
             self.isAnchor = isAnchor
         }
         
-        var x : Double
-        var y : Double
+        var position : MILVector
         
-        var xp: Double
-        var yp: Double
-        
+        var oldPosition : MILVector
         var mass : Double
+        var volume : Double
+        var charge : Double
         
-        var vx : Double
-        var vy : Double
-        
-        var fx : Double
-        var fy : Double
+        var velocity : MILVector
+        var force : MILVector
         
         var isAnchor: Bool
         
     }
     
-    var gravity : Double = 9.8
+    var gravity: MILVector = MILVector(x: 0, y: 1)
+    
+    var gravityAcceleration : Double = 9.8
+    var distanceThreshold : Double = 50
     
     var damping: Double = 1.0
-    var defaultSpringiness: Double = 100
+    public var defaultSpringiness: Double = 100
+    public var defaultMass : Double = 3.0
     
     var balls : [Ball]
     var springs : [Spring]
@@ -81,32 +78,28 @@ public class Simulation {
         balls = [Ball]()
         springs = [Spring]()
         
-        addBall(200, y: 200, mass: 1e13, isAnchor: true)
+        clear()
+        //addBall(200, y: 200, isAnchor: true)
     }
     
-    public func mydist(x1: Double, y1: Double, x2: Double, y2: Double) -> Double
-    {
-        
-        let dx = (x1 - x2)
-        let dy = (y1 - y2)
-        
-        return sqrt(dx * dx + dy * dy)
-    }
-    
-    public func addBall( x: Double, y: Double, mass: Double, isAnchor: Bool = false)
+    public func addBall( x: Double, y: Double, isAnchor: Bool = false)
     {
     
+        let mass = isAnchor ? 1e13 : defaultMass
+        
         let newball = Ball(x: x, y: y, mass: mass, isAnchor: isAnchor)
         
         var nearby = balls.filter() {
-            return self.mydist( $0.x, y1: $0.y, x2: newball.x, y2: newball.y) < 100.0
+            // return self.mydist( $0.x, y1: $0.y, x2: newball.x, y2: newball.y) < self.distanceThreshold
+            return ($0.position - newball.position).magnitude() < self.distanceThreshold
         }
         
         for ball in nearby
         {
             let newspring = Spring(ball1: newball, ball2: ball, springiness: defaultSpringiness)
             
-            newspring.restLength = mydist(newball.x, y1: newball.y, x2: ball.x, y2: ball.y)
+            //newspring.restLength = mydist(newball.x, y1: newball.y, x2: ball.x, y2: ball.y)
+            newspring.restLength = (newball.position - ball.position).magnitude()
             springs.append(newspring)
         }
         
@@ -120,67 +113,102 @@ public class Simulation {
         springs.removeAll(keepCapacity: true)
         balls.removeAll(keepCapacity: true)
         
-        addBall(50, y: 200, mass: 1e13, isAnchor: true)
-        addBall(200, y: 200, mass: 1e13, isAnchor: true)
+        addBall(200, y: 200, isAnchor: true)
+        
+        for i in 0...12
+        {
+            let x = 230.0 + Double(i)*30.0
+            addBall(x, y: 230, isAnchor: false)
+        }
+        
+        addBall(50, y: 100, isAnchor: true)
+        addBall(300, y: 100, isAnchor: true)
     }
     
-    func updatePosition(ball : Ball, dt: Double)
-    {
-        let posy = ball.y + ball.vy * dt
-        let posx = ball.x + ball.vx * dt
+    func updatePosition(ball : Ball, dt: Double) {
         
-        ball.xp = ball.x
-        ball.yp = ball.y
+        let newposition = ball.position + ball.velocity * dt
         
-        ball.x = posx
-        ball.y = posy
+        ball.oldPosition = ball.position
+        
+        ball.position = newposition
+        
     }
     
     func updateVelocities(ball: Ball, dt: Double)
     {
-        let ax = ball.fx/ball.mass
-        let ay = ball.fy/ball.mass
+        let accel = ball.force/ball.mass
         
-        
-        
-        ball.vx += ax * dt
-        ball.vy += ay * dt
+        ball.velocity = ball.velocity + accel * dt
         
     }
     
     func forceGravity(ball: Ball)
     {
         if (ball.isAnchor == false) {
-            ball.fy += ball.mass * gravity
+            
+            ball.force = ball.force + gravity * ball.mass * gravityAcceleration
+            
+        }
+    }
+    
+    func forceCharge(ball: Ball)
+    {
+        for b in balls
+        {
+            let r = (ball.position - b.position).magnitude()
+            let v = (ball.position - b.position)
+            
+            if r < 0.1 {
+                continue
+            }
+            
+            let f = ball.charge * ball.charge / (r*r)
+            // println (f)
+            let nv = v * f
+            
+            ball.force = ball.force + nv
         }
     }
     
     func forceSpring (spring: Spring, dt: Double)
     {
-        let dx = spring.ball2.x - spring.ball1.x
-        let dy = spring.ball2.y - spring.ball1.y
+        let dx = spring.ball2.position.x - spring.ball1.position.x
+        let dy = spring.ball2.position.y - spring.ball1.position.y
         
-        let d = mydist(spring.ball1.x, y1: spring.ball1.y,x2: spring.ball2.x, y2: spring.ball2.y)
+        let d = (spring.ball1.position - spring.ball2.position).magnitude()
+        
         let k = spring.springiness/spring.restLength
         let fx = k * (d - spring.restLength) * dx/d
         let fy = k * (d - spring.restLength) * dy/d
         
-        let fx1 = damping * ((spring.ball2.x - spring.ball2.xp)/dt - (spring.ball1.x - spring.ball1.xp)/dt)
-        let fx2 = damping * ((spring.ball1.x - spring.ball1.xp)/dt - (spring.ball2.x - spring.ball2.xp)/dt)
-        let fy1 = damping * ((spring.ball2.y - spring.ball2.yp)/dt - (spring.ball1.y - spring.ball1.yp)/dt)
-        let fy2 = damping * ((spring.ball1.y - spring.ball1.yp)/dt - (spring.ball2.y - spring.ball2.yp)/dt)
+        let fx1 = damping * ((spring.ball2.position.x - spring.ball2.oldPosition.x)/dt - (spring.ball1.position.x - spring.ball1.oldPosition.x)/dt)
+        let fx2 = damping * ((spring.ball1.position.x - spring.ball1.oldPosition.x)/dt - (spring.ball2.position.x - spring.ball2.oldPosition.x)/dt)
+        let fy1 = damping * ((spring.ball2.position.y - spring.ball2.oldPosition.y)/dt - (spring.ball1.position.y - spring.ball1.oldPosition.y)/dt)
+        let fy2 = damping * ((spring.ball1.position.y - spring.ball1.oldPosition.y)/dt - (spring.ball2.position.y - spring.ball2.oldPosition.y)/dt)
         
-        spring.ball1.fx += fx1
-        spring.ball1.fy += fy1
+        spring.ball1.force.x += fx1
+        spring.ball1.force.y += fy1
         
-        spring.ball2.fx += fx2
-        spring.ball2.fy += fy2
+        spring.ball2.force.x += fx2
+        spring.ball2.force.y += fy2
         
-        spring.ball1.fx += fx
-        spring.ball1.fy += fy
-        spring.ball2.fx -= fx
-        spring.ball2.fy -= fy
+        spring.ball1.force.x += fx
+        spring.ball1.force.y += fy
+        spring.ball2.force.x -= fx
+        spring.ball2.force.y -= fy
 
+    }
+    
+    func hasCollision(ball: Ball) -> Bool
+    {
+        return ball.position.y > 300
+    }
+    
+    func forceCollision(ball: Ball, dt: Double)
+    {
+        // let j = -ball.mass*ball.vy*2
+        // ball.fy = j/dt
     }
     
     func update(dt: Double)
@@ -188,14 +216,19 @@ public class Simulation {
         
         for ball in balls
         {
-            ball.fx = 0.0
-            ball.fy = 0.0
+            ball.force = MILVector()
             
             updatePosition(ball, dt: dt)
         }
         
         for ball in balls
         {
+            if hasCollision(ball)
+            {
+                forceCollision(ball, dt: dt)
+            }
+            
+            forceCharge(ball)
             forceGravity(ball)
         }
         

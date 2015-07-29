@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1ABA0F21B68F2D0004D98A1 /* MILVectorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ABA0F11B68F2D0004D98A1 /* MILVectorTestCase.swift */; };
 		E1E4D9001B48309200754F19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D8FF1B48309200754F19 /* AppDelegate.swift */; };
 		E1E4D9021B48309200754F19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D9011B48309200754F19 /* ViewController.swift */; };
 		E1E4D9051B48309200754F19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E4D9031B48309200754F19 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 		E1E4D9161B48309200754F19 /* DrawingSimulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D9151B48309200754F19 /* DrawingSimulationTests.swift */; };
 		E1E4D9201B4830C800754F19 /* SimulationUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D91F1B4830C800754F19 /* SimulationUIView.swift */; };
 		E1E4D9221B483AA800754F19 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D9211B483AA800754F19 /* Simulation.swift */; };
+		E1E4D9241B4C18D200754F19 /* MILVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D9231B4C18D200754F19 /* MILVector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1ABA0F11B68F2D0004D98A1 /* MILVectorTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MILVectorTestCase.swift; sourceTree = "<group>"; };
 		E1E4D8FA1B48309200754F19 /* DrawingSimulation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingSimulation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E4D8FE1B48309200754F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E4D8FF1B48309200754F19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		E1E4D9151B48309200754F19 /* DrawingSimulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingSimulationTests.swift; sourceTree = "<group>"; };
 		E1E4D91F1B4830C800754F19 /* SimulationUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationUIView.swift; sourceTree = "<group>"; };
 		E1E4D9211B483AA800754F19 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
+		E1E4D9231B4C18D200754F19 /* MILVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MILVector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 				E1E4D8FD1B48309200754F19 /* Supporting Files */,
 				E1E4D91F1B4830C800754F19 /* SimulationUIView.swift */,
 				E1E4D9211B483AA800754F19 /* Simulation.swift */,
+				E1E4D9231B4C18D200754F19 /* MILVector.swift */,
 			);
 			path = DrawingSimulation;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 			children = (
 				E1E4D9151B48309200754F19 /* DrawingSimulationTests.swift */,
 				E1E4D9131B48309200754F19 /* Supporting Files */,
+				E1ABA0F11B68F2D0004D98A1 /* MILVectorTestCase.swift */,
 			);
 			path = DrawingSimulationTests;
 			sourceTree = "<group>";
@@ -167,6 +173,7 @@
 				TargetAttributes = {
 					E1E4D8F91B48309200754F19 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 57U96AW229;
 					};
 					E1E4D90E1B48309200754F19 = {
 						CreatedOnToolsVersion = 6.4;
@@ -221,6 +228,7 @@
 				E1E4D9221B483AA800754F19 /* Simulation.swift in Sources */,
 				E1E4D9021B48309200754F19 /* ViewController.swift in Sources */,
 				E1E4D9201B4830C800754F19 /* SimulationUIView.swift in Sources */,
+				E1E4D9241B4C18D200754F19 /* MILVector.swift in Sources */,
 				E1E4D9001B48309200754F19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1E4D9161B48309200754F19 /* DrawingSimulationTests.swift in Sources */,
+				E1ABA0F21B68F2D0004D98A1 /* MILVectorTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -338,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -350,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DrawingSimulation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -360,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DrawingSimulation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -419,6 +430,7 @@
 				E1E4D91B1B48309200754F19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1E4D91C1B48309200754F19 /* Build configuration list for PBXNativeTarget "DrawingSimulationTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +439,7 @@
 				E1E4D91E1B48309200754F19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
