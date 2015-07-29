@@ -41,17 +41,17 @@ func /(left: MILVector, right: Double) -> MILVector
     return new
 }
 
-class MILVector {
+public class MILVector {
     
     var x : Double
     var y : Double
     
-    init () {
+    public init () {
         self.x = 0.0
         self.y = 0.0
     }
     
-    init (x: Double, y: Double)
+    public init (x: Double, y: Double)
     {
         self.x = x
         self.y = y
