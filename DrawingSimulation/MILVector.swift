@@ -8,7 +8,7 @@
 
 import UIKit
 
-func +(left: MILVector, right: MILVector) -> MILVector
+public func +(left: MILVector, right: MILVector) -> MILVector
 {
     var new = MILVector(x: left.x, y: left.y)
     new.x += right.x
@@ -17,7 +17,7 @@ func +(left: MILVector, right: MILVector) -> MILVector
     return new
 }
 
-func -(left: MILVector, right: MILVector) -> MILVector
+public func -(left: MILVector, right: MILVector) -> MILVector
 {
     var new = MILVector(x: left.x, y: left.y)
     new.x -= right.x
@@ -25,7 +25,7 @@ func -(left: MILVector, right: MILVector) -> MILVector
     return new
 }
 
-func *(left: MILVector, right: Double) -> MILVector
+public func *(left: MILVector, right: Double) -> MILVector
 {
     var new = MILVector(x: left.x, y: left.y);
     new.x *= right;
@@ -33,7 +33,7 @@ func *(left: MILVector, right: Double) -> MILVector
     return new
 }
 
-func /(left: MILVector, right: Double) -> MILVector
+public func /(left: MILVector, right: Double) -> MILVector
 {
     var new = MILVector(x: left.x, y: left.y);
     new.x /= right;
@@ -43,8 +43,8 @@ func /(left: MILVector, right: Double) -> MILVector
 
 public class MILVector {
     
-    var x : Double
-    var y : Double
+    public var x : Double
+    public var y : Double
     
     public init () {
         self.x = 0.0

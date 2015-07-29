@@ -30,6 +30,12 @@ class MILVectorTestCase: XCTestCase {
     
     func testAdd() {
         let a = MILVector(x: 2.0, y: 3.0)
+        let b = MILVector(x: 5.0, y: 2.0)
+        
+        let c = a + b
+        
+        XCTAssert(c.x == 7.0 && c.y == 5.0, "Pass")
+        
     }
 
     func testPerformanceExample() {
