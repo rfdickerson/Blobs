@@ -10,12 +10,12 @@ import UIKit
 
 class SimulationUIView: UIView {
 
-    let ballsize : Double = 10
+    let ballsize : Double = 20.0
     
-    let ballScaleSize = 5.0
+    let ballScaleSize = 2.0
     
-    var profileImg = UIImage(named: "ProfilePic.png")
-    var bandImg = UIImage(named: "band")
+    // var profileImg = UIImage(named: "ProfilePic.png")
+    // var bandImg = UIImage(named: "band")
     
     var simulation : Simulation?
     
@@ -33,7 +33,7 @@ class SimulationUIView: UIView {
     
     func getBallCoords (position: MILVector, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
     {
-        let size = 50.0;
+        let size = ballsize;
         
         let l : Double = position.x - size/2.0
         let t : Double = position.y - size/2.0
@@ -96,21 +96,21 @@ class SimulationUIView: UIView {
                 }
                 
                 //let (l, t, size) = getBallCoords(ball, mass: ball.mass)
-                let rectangle = CGRectMake(CGFloat(nv.x)-32, CGFloat(nv.y)-32, 64.0, 64.0)
+                let rectangle = CGRectMake(CGFloat(nv.x), CGFloat(nv.y), CGFloat(ball.size), CGFloat(ball.size))
 
                 
                 if ball.isAnchor {
-                    let rectangle = CGRectMake(CGFloat(nv.x)-32, CGFloat(nv.y)-32, 64.0, 64.0)
+                    // let rectangle = CGRectMake(CGFloat(nv.x)-32, CGFloat(nv.y)-32, 64.0, 64.0)
                     
                     CGContextAddEllipseInRect(context, rectangle)
                 
-                    //CGContextFillPath(context)
+                    CGContextFillPath(context)
                     // CGContextDrawImage(context, rectangle, profileImg?.CGImage)
                     
                     //CGContextTranslateCTM(context, 0, profileImg!.size.height)
                     //CGContextScaleCTM(context, 1.0, -1.0)
                     //CGContextDrawImage(context, rectangle, profileImg?.CGImage)
-                    profileImg?.drawInRect( rectangle)
+                    // profileImg?.drawInRect( rectangle)
                     
                     CGContextStrokeEllipseInRect(context, rectangle)
                 }

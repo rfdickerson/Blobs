@@ -42,11 +42,14 @@ public class Simulation {
             
             self.mass = mass
             self.volume = 100.0
-            self.charge = 50
+            self.charge = 0.0
+            self.size = 20.0
             
             self.isAnchor = isAnchor
         }
         
+        
+        var size : Double!
         var position : MILVector
         
         var oldPosition : MILVector
@@ -115,6 +118,7 @@ public class Simulation {
         
         addBall(200, y: 200, isAnchor: true)
         
+        /**
         for i in 0...12
         {
             let x = 230.0 + Double(i)*30.0
@@ -123,6 +127,8 @@ public class Simulation {
         
         addBall(50, y: 100, isAnchor: true)
         addBall(300, y: 100, isAnchor: true)
+
+        **/
     }
     
     func updatePosition(ball : Ball, dt: Double) {

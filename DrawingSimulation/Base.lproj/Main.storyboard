@@ -130,24 +130,5 @@
                 </panGestureRecognizer>
             </objects>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="xDI-jW-Edy">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Llw-Y7-vKt" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0CK-pO-7d0"/>
-                        <viewControllerLayoutGuide type="bottom" id="jax-IE-aWz"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W83-I5-91I">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hp3-1u-W2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="550" y="1104"/>
-        </scene>
     </scenes>
 </document>
