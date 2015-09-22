@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         
         simulationView.setNeedsDisplay()
         
-        println("Clicked!")
+        print("Clicked!")
     }
     
     @IBAction func handleClearScene(sender: AnyObject) {
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         // acceleration stuff
         motionManager = CMMotionManager()
         if motionManager!.deviceMotionAvailable {
-            println("Motion device Found!!")
+            print("Motion device Found!!")
             motionManager?.deviceMotionUpdateInterval = 0.005
             
             motionManager?.startDeviceMotionUpdates()
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
             }
             */
         } else {
-           println("Motion device not available")
+           print("Motion device not available")
         }
         
         sim = Simulation()
@@ -142,7 +142,7 @@ class ViewController: UIViewController {
         
         currentTime = NSDate.timeIntervalSinceReferenceDate()
         
-        var dt = currentTime - startTime
+        let dt = currentTime - startTime
         
         if dt < 0.1 {
             sim?.update(dt*10)

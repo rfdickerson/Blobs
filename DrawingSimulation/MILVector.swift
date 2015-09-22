@@ -10,7 +10,7 @@ import UIKit
 
 public func +(left: MILVector, right: MILVector) -> MILVector
 {
-    var new = MILVector(x: left.x, y: left.y)
+    let new = MILVector(x: left.x, y: left.y)
     new.x += right.x
     new.y += right.y
     
@@ -19,7 +19,7 @@ public func +(left: MILVector, right: MILVector) -> MILVector
 
 public func -(left: MILVector, right: MILVector) -> MILVector
 {
-    var new = MILVector(x: left.x, y: left.y)
+    let new = MILVector(x: left.x, y: left.y)
     new.x -= right.x
     new.y -= right.y
     return new
@@ -27,7 +27,7 @@ public func -(left: MILVector, right: MILVector) -> MILVector
 
 public func *(left: MILVector, right: Double) -> MILVector
 {
-    var new = MILVector(x: left.x, y: left.y);
+    let new = MILVector(x: left.x, y: left.y);
     new.x *= right;
     new.y *= right;
     return new
@@ -35,7 +35,7 @@ public func *(left: MILVector, right: Double) -> MILVector
 
 public func /(left: MILVector, right: Double) -> MILVector
 {
-    var new = MILVector(x: left.x, y: left.y);
+    let new = MILVector(x: left.x, y: left.y);
     new.x /= right;
     new.y /= right;
     return new
@@ -64,7 +64,7 @@ public class MILVector {
     
     func norm () -> MILVector
     {
-        var new = MILVector()
+        let new = MILVector()
         let mag = self.magnitude()
         new.x = self.x / mag
         new.y = self.y / mag

@@ -92,7 +92,7 @@ public class Simulation {
         
         let newball = Ball(x: x, y: y, mass: mass, isAnchor: isAnchor)
         
-        var nearby = balls.filter() {
+        let nearby = balls.filter() {
             // return self.mydist( $0.x, y1: $0.y, x2: newball.x, y2: newball.y) < self.distanceThreshold
             return ($0.position - newball.position).magnitude() < self.distanceThreshold
         }
@@ -106,7 +106,7 @@ public class Simulation {
             springs.append(newspring)
         }
         
-        println("Added the ball")
+        print("Added the ball")
         
         balls.append( newball )
     }
