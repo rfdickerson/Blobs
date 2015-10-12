@@ -153,7 +153,7 @@ public class Simulation {
     
     func forceGravity(ball: Ball)
     {
-        if (ball.isAnchor == false) {
+        if ball.isAnchor == false {
             
             ball.force = ball.force + gravity * ball.mass * gravityAcceleration
             

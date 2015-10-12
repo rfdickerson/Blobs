@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var simulationView: SimulationUIView!
     
+    let updateInterval = 0.0005
+    
     var sim : Simulation?
     var startTime = NSDate.timeIntervalSinceReferenceDate()
     var currentTime: NSTimeInterval = 0
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
     
     @IBAction func handleSimRun(switchState: UISwitch) {
         if switchState.on {
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.005, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         } else {
             timer?.invalidate()
         }
@@ -65,9 +67,13 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func handleChangleElasticity(sender: UISlider) {
+    @IBAction func handleChangeElasticity(sender: UISlider) {
         
-        sim?.defaultSpringiness = Double(sender.value)
+        if let sim = sim {
+            sim.defaultSpringiness = Double(sender.value)
+        } else {
+            print("No simulator connected")
+        }
     }
     
     @IBAction func handleClick(sender: UITapGestureRecognizer) {
@@ -79,7 +85,9 @@ class ViewController: UIViewController {
             
             let v = view.toViewspace(c)
             
-            sim?.addBall(Double(v.x), y: Double(v.y))
+            if let sim = sim {
+                sim.addBall(Double(v.x), y: Double(v.y))
+            }
         }
         
         simulationView.setNeedsDisplay()
@@ -123,7 +131,7 @@ class ViewController: UIViewController {
         
         simulationView.simulation = sim
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.005, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
