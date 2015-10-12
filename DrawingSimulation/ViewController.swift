@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var currentTime: NSTimeInterval = 0
     var timer : NSTimer?
     var motionManager : CMMotionManager?
-    var panBegin : MILVector?
+    var panBegin : Vector2D?
 
     override func shouldAutorotate() -> Bool {
         return false
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         if let view = sender.view as? SimulationUIView
         {
             let coords = sender.translationInView(view)
-            let c = MILVector(x: Double(coords.x), y: Double(coords.y))
+            let c = Vector2D(x: Double(coords.x), y: Double(coords.y))
             
             
             if sender.state == UIGestureRecognizerState.Began
@@ -56,11 +56,11 @@ class ViewController: UIViewController {
             
             // println(coords)
             
-            // let c = MILVector(x: Double(coords.x), y: Double(coords.y))
+            // let c = Vector2D(x: Double(coords.x), y: Double(coords.y))
             
             view.viewportOffset = view.viewportOffset - offset
             
-            panBegin = MILVector(x: c.x, y: c.y)
+            panBegin = Vector2D(x: c.x, y: c.y)
 
         }
     }
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         if let view = sender.view as? SimulationUIView
         {
             let coords = sender.locationInView( view )
-            let c = MILVector(x:Double(coords.x), y: Double(coords.y))
+            let c = Vector2D(x:Double(coords.x), y: Double(coords.y))
             
             let v = view.toViewspace(c)
             

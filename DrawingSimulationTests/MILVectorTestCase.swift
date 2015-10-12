@@ -1,5 +1,5 @@
 //
-//  MILVectorTestCase.swift
+//  Vector2DTestCase.swift
 //  DrawingSimulation
 //
 //  Created by Robert Dickerson on 7/29/15.
@@ -11,7 +11,7 @@ import XCTest
 
 import DrawingSimulation
 
-class MILVectorTestCase: XCTestCase {
+class Vector2DTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -29,8 +29,8 @@ class MILVectorTestCase: XCTestCase {
     }
     
     func testAdd() {
-        let a = MILVector(x: 2.0, y: 3.0)
-        let b = MILVector(x: 5.0, y: 2.0)
+        let a = Vector2D(x: 2.0, y: 3.0)
+        let b = Vector2D(x: 5.0, y: 2.0)
         
         let c = a + b
         

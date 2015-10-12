@@ -34,11 +34,11 @@ public class Simulation {
         
         init(x: Double, y: Double, mass: Double, isAnchor: Bool = false)
         {
-            self.position = MILVector(x: x, y: y)
-            self.oldPosition = MILVector(x: x, y: y)
+            self.position = Vector2D(x: x, y: y)
+            self.oldPosition = Vector2D(x: x, y: y)
             
-            self.velocity = MILVector()
-            self.force = MILVector()
+            self.velocity = Vector2D()
+            self.force = Vector2D()
             
             self.mass = mass
             self.volume = 100.0
@@ -50,21 +50,21 @@ public class Simulation {
         
         
         var size : Double!
-        var position : MILVector
+        var position : Vector2D
         
-        var oldPosition : MILVector
+        var oldPosition : Vector2D
         var mass : Double
         var volume : Double
         var charge : Double
         
-        var velocity : MILVector
-        var force : MILVector
+        var velocity : Vector2D
+        var force : Vector2D
         
         var isAnchor: Bool
         
     }
     
-    var gravity: MILVector = MILVector(x: 0, y: 1)
+    var gravity: Vector2D = Vector2D(x: 0, y: 1)
     
     var gravityAcceleration : Double = 9.8
     var distanceThreshold : Double = 50
@@ -116,7 +116,9 @@ public class Simulation {
         springs.removeAll(keepCapacity: true)
         balls.removeAll(keepCapacity: true)
         
-        addBall(200, y: 200, isAnchor: true)
+        // addBall(200, y: 200, isAnchor: true)
+        addBall(50, y: 200, isAnchor: true)
+        addBall(300, y: 200, isAnchor: true)
         
         /**
         for i in 0...12
@@ -222,7 +224,7 @@ public class Simulation {
         
         for ball in balls
         {
-            ball.force = MILVector()
+            ball.force = Vector2D()
             
             updatePosition(ball, dt: dt)
         }

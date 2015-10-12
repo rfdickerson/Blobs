@@ -19,19 +19,19 @@ class SimulationUIView: UIView {
     
     var simulation : Simulation?
     
-    var viewportOffset : MILVector = MILVector()
+    var viewportOffset : Vector2D = Vector2D()
     
-    func toViewspace(v: MILVector) -> MILVector
+    func toViewspace(v: Vector2D) -> Vector2D
     {
         return ( viewportOffset + v)
     }
     
-    func toWorldspace(v: MILVector) -> MILVector
+    func toWorldspace(v: Vector2D) -> Vector2D
     {
         return (v - viewportOffset)
     }
     
-    func getBallCoords (position: MILVector, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
+    func getBallCoords (position: Vector2D, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
     {
         let size = ballsize;
         
@@ -83,7 +83,7 @@ class SimulationUIView: UIView {
                 let x : Double = ball.position.x - ballsize/2.0
                 let y : Double = ball.position.y - ballsize/2.0
                 
-                let v = MILVector(x: x, y: y)
+                let v = Vector2D(x: x, y: y)
                 let nv = toWorldspace(v)
                 
                 if (ball.isAnchor)

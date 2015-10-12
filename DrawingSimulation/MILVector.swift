@@ -1,5 +1,5 @@
 //
-//  MILVector.swift
+//  Vector2D.swift
 //  DrawingSimulation
 //
 //  Created by Robert Dickerson on 7/7/15.
@@ -8,40 +8,40 @@
 
 import UIKit
 
-public func +(left: MILVector, right: MILVector) -> MILVector
+public func +(left: Vector2D, right: Vector2D) -> Vector2D
 {
-    let new = MILVector(x: left.x, y: left.y)
+    let new = Vector2D(x: left.x, y: left.y)
     new.x += right.x
     new.y += right.y
     
     return new
 }
 
-public func -(left: MILVector, right: MILVector) -> MILVector
+public func -(left: Vector2D, right: Vector2D) -> Vector2D
 {
-    let new = MILVector(x: left.x, y: left.y)
+    let new = Vector2D(x: left.x, y: left.y)
     new.x -= right.x
     new.y -= right.y
     return new
 }
 
-public func *(left: MILVector, right: Double) -> MILVector
+public func *(left: Vector2D, right: Double) -> Vector2D
 {
-    let new = MILVector(x: left.x, y: left.y);
+    let new = Vector2D(x: left.x, y: left.y);
     new.x *= right;
     new.y *= right;
     return new
 }
 
-public func /(left: MILVector, right: Double) -> MILVector
+public func /(left: Vector2D, right: Double) -> Vector2D
 {
-    let new = MILVector(x: left.x, y: left.y);
+    let new = Vector2D(x: left.x, y: left.y);
     new.x /= right;
     new.y /= right;
     return new
 }
 
-public class MILVector {
+public class Vector2D {
     
     public var x : Double
     public var y : Double
@@ -57,14 +57,14 @@ public class MILVector {
         self.y = y
     }
     
-    func dot (a: MILVector, b: MILVector) -> Double
+    func dot (a: Vector2D, b: Vector2D) -> Double
     {
-        return 0.0
+        return a.x * b.x + a.y * b.y
     }
     
-    func norm () -> MILVector
+    func norm () -> Vector2D
     {
-        let new = MILVector()
+        let new = Vector2D()
         let mag = self.magnitude()
         new.x = self.x / mag
         new.y = self.y / mag
