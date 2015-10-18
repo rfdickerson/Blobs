@@ -7,36 +7,35 @@
 //
 
 import UIKit
+import simd
 
 class SimulationUIView: UIView {
 
-    let ballsize : Double = 20.0
+    let ballsize : Float = 20.0
     
     let ballScaleSize = 2.0
     
-    // var profileImg = UIImage(named: "ProfilePic.png")
-    // var bandImg = UIImage(named: "band")
-    
     var simulation : Simulation?
     
-    var viewportOffset : Vector2D = Vector2D()
+    var viewportOffset : float2 = float2(0,0)
     
-    func toViewspace(v: Vector2D) -> Vector2D
+    func toViewspace(v: float2) -> float2
     {
         return ( viewportOffset + v)
     }
     
-    func toWorldspace(v: Vector2D) -> Vector2D
+    func toWorldspace(v: float2) -> float2
     {
         return (v - viewportOffset)
     }
     
-    func getBallCoords (position: Vector2D, mass: Double) -> (x: CGFloat, y: CGFloat, size: CGFloat)
+    func getBallCoords (position: float2, mass: Float)
+        -> (x: CGFloat, y: CGFloat, size: CGFloat)
     {
         let size = ballsize;
         
-        let l : Double = position.x - size/2.0
-        let t : Double = position.y - size/2.0
+        let l : Float = position.x - size/2.0
+        let t : Float = position.y - size/2.0
         
         return (CGFloat(l), CGFloat(t), CGFloat(size))
     }
@@ -68,6 +67,7 @@ class SimulationUIView: UIView {
             
             for spring in sim.springs
             {
+                
                 let v1 = toWorldspace(spring.ball1.position)
                 let v2 = toWorldspace(spring.ball2.position)
                 
@@ -80,10 +80,10 @@ class SimulationUIView: UIView {
             
             for ball in sim.balls
             {
-                let x : Double = ball.position.x - ballsize/2.0
-                let y : Double = ball.position.y - ballsize/2.0
+                let x : Float = ball.position.x - ballsize/2.0
+                let y : Float = ball.position.y - ballsize/2.0
                 
-                let v = Vector2D(x: x, y: y)
+                let v = float2(x: x, y: y)
                 let nv = toWorldspace(v)
                 
                 if (ball.isAnchor)

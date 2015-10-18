@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import simd
 
 public func +(left: Vector2D, right: Vector2D) -> Vector2D
 {
@@ -46,15 +47,22 @@ public class Vector2D {
     public var x : Double
     public var y : Double
     
+    var vector :  double2
+    
     public init () {
         self.x = 0.0
         self.y = 0.0
+        
+        self.vector = double2(0,0)
     }
     
     public init (x: Double, y: Double)
     {
         self.x = x
         self.y = y
+        
+        self.vector = double2(x,y)
+        
     }
     
     func dot (a: Vector2D, b: Vector2D) -> Double
@@ -80,6 +88,8 @@ public class Vector2D {
     {
         self.x = 0.0
         self.y = 0.0
+        
+        
     }
     
     

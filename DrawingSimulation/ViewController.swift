@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import simd
 
 class ViewController: UIViewController {
 
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
     var currentTime: NSTimeInterval = 0
     var timer : NSTimer?
     var motionManager : CMMotionManager?
-    var panBegin : Vector2D?
+    var panBegin : float2?
 
     override func shouldAutorotate() -> Bool {
         return false
@@ -35,18 +36,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func changeGravity(sender: UISlider) {
-        sim?.gravityAcceleration = Double(sender.value)
+        sim?.gravityAcceleration = Float(sender.value)
     }
     
     @IBAction func handleChangeMass(sender: UISlider) {
-        sim?.defaultMass = Double(sender.value)
+        sim?.defaultMass = Float(sender.value)
     }
     
     @IBAction func handlePan(sender: UIPanGestureRecognizer) {
         if let view = sender.view as? SimulationUIView
         {
             let coords = sender.translationInView(view)
-            let c = Vector2D(x: Double(coords.x), y: Double(coords.y))
+            let c = float2(x: Float(coords.x), y: Float(coords.y))
             
             
             if sender.state == UIGestureRecognizerState.Began
@@ -62,7 +63,7 @@ class ViewController: UIViewController {
             
             view.viewportOffset = view.viewportOffset - offset
             
-            panBegin = Vector2D(x: c.x, y: c.y)
+            panBegin = float2(x: c.x, y: c.y)
 
         }
     }
@@ -70,7 +71,7 @@ class ViewController: UIViewController {
     @IBAction func handleChangeElasticity(sender: UISlider) {
         
         if let sim = sim {
-            sim.defaultSpringiness = Double(sender.value)
+            sim.defaultSpringiness = Float(sender.value)
         } else {
             print("No simulator connected")
         }
@@ -81,12 +82,12 @@ class ViewController: UIViewController {
         if let view = sender.view as? SimulationUIView
         {
             let coords = sender.locationInView( view )
-            let c = Vector2D(x:Double(coords.x), y: Double(coords.y))
+            let c = float2(x: Float(coords.x), y: Float(coords.y))
             
             let v = view.toViewspace(c)
             
             if let sim = sim {
-                sim.addBall(Double(v.x), y: Double(v.y))
+                sim.addBall(Float(v.x), y: Float(v.y))
             }
         }
         
@@ -142,15 +143,15 @@ class ViewController: UIViewController {
         
         if let deviceMotion = motionManager?.deviceMotion {
             
-            sim?.gravity.x = Double(deviceMotion.gravity.x)
-            sim?.gravity.y = Double(-deviceMotion.gravity.y)
+            sim?.gravity.x = Float(deviceMotion.gravity.x)
+            sim?.gravity.y = Float(-deviceMotion.gravity.y)
             
         }
         
         
         currentTime = NSDate.timeIntervalSinceReferenceDate()
         
-        let dt = currentTime - startTime
+        let dt = Float(currentTime - startTime)
         
         if dt < 0.1 {
             sim?.update(dt*10)
