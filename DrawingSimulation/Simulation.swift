@@ -82,7 +82,7 @@ public class Simulation {
         springs = [Spring]()
         
         clear()
-        //addBall(200, y: 200, isAnchor: true)
+        
     }
     
     public func addBall( x: Double, y: Double, isAnchor: Bool = false)
@@ -120,18 +120,54 @@ public class Simulation {
         addBall(50, y: 200, isAnchor: true)
         addBall(300, y: 200, isAnchor: true)
         
-        /**
-        for i in 0...12
+    }
+    
+    func approxDerivative (x: Double, f : (Double->Double)) -> Double
+    {
+      
+        let dx = 0.001 * x
+        let dy = f (x + dx) - f (x - dx)
+        
+        return dy/(2*dx)
+    }
+    
+    public func eulerMethod (f : (Double->Double), y0: Double, h: Double) -> Double
+    {
+        return y0 + h * f (y0)
+    }
+    
+    public func implicitEuler (f: (Double->Double), y0: Double, h: Double) -> Double
+    {
+        let guess = eulerMethod ( f, y0: y0, h: h)
+        let g = {x in x - y0 - h*f(x)}
+        return newtonRaphson(guess, f: g)
+    }
+    
+    
+    func newtonRaphson (guess: Double, f : (Double->Double)) -> Double
+    {
+        if isnan(guess)
         {
-            let x = 230.0 + Double(i)*30.0
-            addBall(x, y: 230, isAnchor: false)
+            assert(false)
         }
         
-        addBall(50, y: 100, isAnchor: true)
-        addBall(300, y: 100, isAnchor: true)
-
-        **/
+        let epsilon = 0.001
+        let fprime = approxDerivative(guess, f: f)
+        if fprime == 0 || isnan(fprime)
+        {
+            return 0
+        }
+        
+        let newGuess = guess - f (guess) / fprime
+        let difference = abs(newGuess - guess)
+        
+        if difference <= epsilon {
+            return newGuess
+        } else {
+            return newtonRaphson(newGuess, f: f)
+        }
     }
+
     
     func updatePosition(ball : Ball, dt: Double) {
         
@@ -139,7 +175,26 @@ public class Simulation {
         
         ball.oldPosition = ball.position
         
+        /**
+        
+        func fx (x: Double) -> Double
+        {
+            return ball.velocity.x
+        }
+        
+        func fy (y: Double) -> Double
+        {
+            return ball.velocity.y
+        }
+        
+        let xp = implicitEuler(fx, y0: ball.oldPosition.x, h: dt)
+        let yp = implicitEuler(fy, y0: ball.oldPosition.y, h: dt)
+        **/
+        
         ball.position = newposition
+        
+        // ball.position.x = xp
+        // ball.position.y = yp
         
     }
     
@@ -147,7 +202,26 @@ public class Simulation {
     {
         let accel = ball.force/ball.mass
         
-        ball.velocity = ball.velocity + accel * dt
+        // ball.velocity = ball.velocity + accel * dt
+        
+        // let fx = {x in accel.x*x}
+        // let fy = {x in accel.y*x}
+        
+        func fx (x: Double) -> Double
+        {
+            return accel.x
+        }
+        
+        func fy (y: Double) -> Double
+        {
+            return accel.y
+        }
+        
+        let xp = implicitEuler(fx, y0: ball.velocity.x, h: dt)
+        let yp = implicitEuler(fy, y0: ball.velocity.y, h: dt)
+        
+        ball.velocity.x = xp
+        ball.velocity.y = yp
         
     }
     

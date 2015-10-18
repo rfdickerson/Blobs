@@ -135,6 +135,7 @@
                             <constraint firstAttribute="trailing" secondItem="xMi-Nt-lfa" secondAttribute="trailing" id="2b1-D4-Kcp"/>
                             <constraint firstAttribute="trailing" secondItem="fHe-bn-WMI" secondAttribute="trailing" id="2pP-ao-zkD"/>
                             <constraint firstAttribute="bottom" secondItem="xMi-Nt-lfa" secondAttribute="bottom" id="3Lu-g5-3iK"/>
+                            <constraint firstItem="xMi-Nt-lfa" firstAttribute="top" secondItem="fHe-bn-WMI" secondAttribute="bottom" constant="2" id="7WM-Da-3xY"/>
                             <constraint firstItem="xMi-Nt-lfa" firstAttribute="top" secondItem="fHe-bn-WMI" secondAttribute="bottom" constant="2" id="Tpr-Xl-i05"/>
                             <constraint firstItem="fHe-bn-WMI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lTq-Ae-7j9"/>
                             <constraint firstItem="xMi-Nt-lfa" firstAttribute="bottom" secondItem="fHe-bn-WMI" secondAttribute="bottom" constant="199" id="std-8g-zot"/>
