@@ -1,4 +1,4 @@
-* Physics Blobs
+# Physics Blobs
 
 [![Build Status](https://travis-ci.org/rfdickerson/physics-blobs.svg?branch=develop)](https://travis-ci.org/rfdickerson/physics-blobs)
 
